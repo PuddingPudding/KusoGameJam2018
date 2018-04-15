@@ -20,10 +20,10 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float fCamUpper = m_camMainCam.transform.position.y + m_camMainCam.orthographicSize - 0.8f;
-        float fCamButton = m_camMainCam.transform.position.y - m_camMainCam.orthographicSize + 0.8f;
-        float fCamRight = m_camMainCam.transform.position.x + m_camMainCam.orthographicSize * m_camMainCam.aspect - 0.6f;
-        float fCamLeft = m_camMainCam.transform.position.x - m_camMainCam.orthographicSize * m_camMainCam.aspect + 0.6f;
+        float fCamUpper = m_camMainCam.transform.position.y + m_camMainCam.orthographicSize;
+        float fCamButton = m_camMainCam.transform.position.y - m_camMainCam.orthographicSize;
+        float fCamRight = m_camMainCam.transform.position.x + m_camMainCam.orthographicSize * m_camMainCam.aspect;
+        float fCamLeft = m_camMainCam.transform.position.x - m_camMainCam.orthographicSize * m_camMainCam.aspect;
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -92,7 +92,7 @@ public class CameraScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             Vector2 v2PlayerMove = Vector2.zero;
-            if (m_gobjPlayer.transform.position.y <= fCamUpper && (m_gobjPlayer.transform.position.x >= fCamRight || m_gobjPlayer.transform.position.x <= fCamLeft))
+            if (m_gobjPlayer.transform.position.y <= fCamUpper && (m_gobjPlayer.transform.position.x + 0.6f >= fCamRight || m_gobjPlayer.transform.position.x-0.6f <= fCamLeft))
             {
                 v2PlayerMove.y += m_fPlayerSpeed * Time.deltaTime;
                 m_gobjPlayer.transform.position += (Vector3)v2PlayerMove;
@@ -101,7 +101,7 @@ public class CameraScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             Vector2 v2PlayerMove = Vector2.zero;
-            if (m_gobjPlayer.transform.position.y >= fCamButton && (m_gobjPlayer.transform.position.x >= fCamRight || m_gobjPlayer.transform.position.x <= fCamLeft))
+            if (m_gobjPlayer.transform.position.y >= fCamButton && (m_gobjPlayer.transform.position.x + 0.6f >= fCamRight || m_gobjPlayer.transform.position.x - 0.6f <= fCamLeft))
             {
                 v2PlayerMove.y -= m_fPlayerSpeed * Time.deltaTime;
                 m_gobjPlayer.transform.position += (Vector3)v2PlayerMove;
@@ -110,7 +110,7 @@ public class CameraScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             Vector2 v2PlayerMove = Vector2.zero;
-            if ((m_gobjPlayer.transform.position.y <= fCamButton || m_gobjPlayer.transform.position.y >= fCamUpper) && m_gobjPlayer.transform.position.x <= fCamRight)
+            if ((m_gobjPlayer.transform.position.y - 0.6f <= fCamButton || m_gobjPlayer.transform.position.y + 0.6f >= fCamUpper) && m_gobjPlayer.transform.position.x <= fCamRight)
             {
                 v2PlayerMove.x += m_fPlayerSpeed * Time.deltaTime;
                 m_gobjPlayer.transform.position += (Vector3)v2PlayerMove;
@@ -119,7 +119,7 @@ public class CameraScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             Vector2 v2PlayerMove = Vector2.zero;
-            if ((m_gobjPlayer.transform.position.y <= fCamButton || m_gobjPlayer.transform.position.y >= fCamUpper) && m_gobjPlayer.transform.position.x >= fCamLeft)
+            if ((m_gobjPlayer.transform.position.y - 0.6f <= fCamButton || m_gobjPlayer.transform.position.y + 0.6f >= fCamUpper) && m_gobjPlayer.transform.position.x >= fCamLeft)
             {
                 v2PlayerMove.x -= m_fPlayerSpeed * Time.deltaTime;
                 m_gobjPlayer.transform.position += (Vector3)v2PlayerMove;

@@ -13,6 +13,7 @@ public class GameManager1 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Time.timeScale = 1;
         for (int i = 1; i < m_colListEasterEggs.Count; i++)
         {
             m_colListEasterEggs[i].gameObject.SetActive(false);
