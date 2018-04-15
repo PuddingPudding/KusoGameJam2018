@@ -39,4 +39,8 @@ public class TitleManager : MonoBehaviour
     {
         m_bShowingStory = true;
     }
+    public void EndGame()
+    {
+        Application.Quit();
+    }
 }

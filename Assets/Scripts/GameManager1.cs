@@ -8,6 +8,7 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private List<Collider2D> m_colListCoins = new List<Collider2D>();
     [SerializeField] private Collider2D m_colPlayerBody;
     [SerializeField] private List<Collider2D> m_colListEasterEggs = new List<Collider2D>();
+    public static bool g_bEasterEggsFound = false;
 
     // Use this for initialization
     void Start()
@@ -16,6 +17,7 @@ public class GameManager1 : MonoBehaviour
         {
             m_colListEasterEggs[i].gameObject.SetActive(false);
         }
+        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
@@ -37,6 +39,10 @@ public class GameManager1 : MonoBehaviour
                 if(i < m_colListEasterEggs.Count-1)
                 {
                     m_colListEasterEggs[i + 1].gameObject.SetActive(true);
+                }
+                else if(i == m_colListEasterEggs.Count-1)
+                {
+                    g_bEasterEggsFound = true;
                 }
             }
         }
